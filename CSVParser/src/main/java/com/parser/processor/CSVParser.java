@@ -16,7 +16,6 @@ public class CSVParser {
 	}
 
 	public List<CourseModel> readCourseCSV(String path) throws IOException {
-
 		try (FileReader reader = new FileReader(path)) {
 			CsvMapper mapper = new CsvMapper();
 			CsvSchema schema = mapper.schemaFor(CourseModel.class).withColumnSeparator(',').withNullValue("");

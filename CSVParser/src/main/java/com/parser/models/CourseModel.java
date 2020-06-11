@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder({ "title", "author", "price" })
 public class CourseModel {
+	
 	private String title;
 	private String author;
 	private Integer price;
