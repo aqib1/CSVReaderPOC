@@ -1,6 +1,5 @@
 package com.parser.processor;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
@@ -16,12 +15,11 @@ public class CSVParser {
 	}
 
 	public List<CourseModel> readCourseCSV(String path) throws IOException {
-		try (FileReader reader = new FileReader(path)) {
+		String values= "REST With Spring,Eugen Paraschiv,,true,ele,3";
 			CsvMapper mapper = new CsvMapper();
 			CsvSchema schema = mapper.schemaFor(CourseModel.class).withColumnSeparator(',').withNullValue("");
-			MappingIterator<CourseModel> mi = mapper.readerFor(CourseModel.class).with(schema).readValues(reader);
+			MappingIterator<CourseModel> mi = mapper.readerFor(CourseModel.class).with(schema).readValues(values);
 			return mi.readAll();
-		}
 	}
 
 }
