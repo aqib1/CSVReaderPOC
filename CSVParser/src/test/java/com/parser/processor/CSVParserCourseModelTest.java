@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.parser.models.CourseModel;
-import com.parser.models.Test1;
 
 public class CSVParserCourseModelTest {
 
@@ -25,23 +24,19 @@ public class CSVParserCourseModelTest {
 
 	@Test
 	public void testReadCSV() throws FileNotFoundException, IOException {
-		List<CourseModel> result = csvParser.readCourseCSV(COURSES_CSV);
-//		List<CourseModel> expected = Arrays.asList(
-//				new CourseModel("REST With Spring", "Eugen Paraschiv", 0, Test1.TONY, "str1", "str2", "str3"),
-//				new CourseModel(null, "Baeldung", 0, Test1.IBM, "str1", "str2", "str3"),
-//				new CourseModel("Complete Java MasterClass", null, 0, Test1.TONY, "str1", "str2", "str3")
-//				);
-		System.out.println(result);
-//		Assert.assertEquals(expected.get(0), result.get(0));
-//		Assert.assertEquals(expected.get(1), result.get(1));
-//		Assert.assertEquals(expected.get(2), result.get(2));
+		List<CourseModel> result = csvParser.readCSV(CourseModel.class, COURSES_CSV);
+		List<CourseModel> expected = Arrays.asList(new CourseModel("REST With Spring", "Eugen Paraschiv", 290),
+				new CourseModel(null, "Baeldung", 290), new CourseModel("Complete Java MasterClass", null, 0));
+		Assert.assertEquals(expected.get(0), result.get(0));
+		Assert.assertEquals(expected.get(1), result.get(1));
+		Assert.assertEquals(expected.get(2), result.get(2));
 	}
 
 	@Test
 	public void methods() throws NoSuchMethodException, SecurityException {
 		Class<?> c = CSVParser.class;
-		String readCSVMethodName = "readCourseCSV";
-		Method readCSVMethod = c.getDeclaredMethod(readCSVMethodName, String.class);
+		String readCSVMethodName = "readCSV";
+		Method readCSVMethod = c.getDeclaredMethod(readCSVMethodName, Class.class, String.class);
 		Assert.assertNotNull(readCSVMethod);
 
 	}
